@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="modelo">
+<class name="Viaje" table="viaje">
+	
+	<id name="id" type="long" column="idViaje" >
+			 <generator class="native"/>
+	 </id>
+	
+	<many-to-one name="conductor"  
+			column="idConductor"
+			unique="true"
+			cascade="all"
+		/>
+		
+	<property name="origen" column="origen" />
+	
+	<property name="destino" column="destino" />
+	
+	<property name="fecha" column="fecha" />
+	
+	<property name="costoTotal" column="costoTotal" />
+	
+	<property name="cantMaximaPasajeros" column="cantMaximaPasajeros" />
+	
+	<property name="finalizado" column="finalizado" />
+	
+	<list name="pasajeros" cascade="all">
+			<key column="idPasajeroViaje" />
+			<index column ="indexPasajeroViaje" />
+			<one-to-many class="Pasajero"/>
+	</list>
+	
+	<list name="calificaciones" cascade="all">
+			<key column="idCalificacionViaje" />
+			<index column ="indexCalificacionViaje" />
+			<one-to-many class="Calificacion"/>
+	</list>
+	
+</class>
+</hibernate-mapping>

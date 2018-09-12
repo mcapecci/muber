@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="modelo">
+<class name="Calificacion" table="calificacion">
+	
+	<id name="id" type="long" column="idCalificacion" >
+			 <generator class="native"/>
+	 </id>
+	
+	<property name="puntaje" column="puntaje" />
+	
+	<property name="comentario" column="comentario" />
+	
+	<many-to-one name="viaje"  
+			column="idViaje"
+			unique="true"
+			cascade="all"
+		/>
+		
+	<many-to-one name="pasajero"  
+			column="idPasajero"
+			unique="true"
+			cascade="all"
+		/>
+	
+</class>
+</hibernate-mapping>
