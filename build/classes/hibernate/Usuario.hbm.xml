@@ -21,11 +21,10 @@
 	<subclass name="Conductor" discriminator-value="Conductor"> 
 		<property name="fechaVencimientoLicencia" column="fechaVencimientoLicencia" />
 		
-		<list name="viajes" cascade="all">
-			<key column="idViajeConductor" />
-			<index column ="indexViajeConductor" />
+		<set name="viajes" cascade="all">
+			<key column="idViaje" />
 			<one-to-many class="Viaje"/>
-		</list>
+		</set>
 	</subclass>
 		
 	<subclass name="Pasajero" discriminator-value="Pasajero"> 

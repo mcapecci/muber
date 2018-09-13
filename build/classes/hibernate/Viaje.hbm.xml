@@ -28,17 +28,15 @@
 	
 	<property name="finalizado" column="finalizado" />
 	
-	<list name="pasajeros" cascade="all">
-			<key column="idPasajeroViaje" />
-			<index column ="indexPasajeroViaje" />
+	<set name="pasajeros" cascade="all">
+			<key column="idPasajero" />
 			<one-to-many class="Pasajero"/>
-	</list>
+	</set>
 	
-	<list name="calificaciones" cascade="all">
-			<key column="idCalificacionViaje" />
-			<index column ="indexCalificacionViaje" />
+	<set name="calificaciones" cascade="all">
+			<key column="idCalificacion" />
 			<one-to-many class="Calificacion"/>
-	</list>
+	</set>
 	
 </class>
 </hibernate-mapping>

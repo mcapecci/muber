@@ -4,29 +4,26 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping package="modelo">
-<class name="Viaje" table="viaje">
+<class name="Muber" table="muber">
 	
-	<id name="id" type="long" column="idViaje" >
+	<id name="id" type="long" column="idMuber" >
 			 <generator class="native"/>
 	 </id>
 	
-	<list name="pasajeros" cascade="all">
-			<key column="idPasajeroMuber" />
-			<index column ="indexPasajeroMuber" />
+	<set name="pasajeros" cascade="all">
+			<key column="idPasajero" />
 			<one-to-many class="Pasajero"/>
-	</list>
+	</set>
 	
-	<list name="conductores" cascade="all">
-			<key column="idConductorMuber" />
-			<index column ="indexConductorMuber" />
+	<set name="conductores" cascade="all">
+			<key column="idConductor" />
 			<one-to-many class="Conductor"/>
-	</list>
+	</set>
 	
-	<list name="viajes" cascade="all">
-			<key column="idViajeMuber" />
-			<index column ="indexViajeMuber" />
+	<set name="viajes" cascade="all">
+			<key column="idViaje" />
 			<one-to-many class="Viaje"/>
-	</list>
+	</set>
 	
 </class>
 </hibernate-mapping>

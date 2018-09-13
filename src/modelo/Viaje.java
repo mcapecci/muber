@@ -15,44 +15,43 @@ public class Viaje {
 	private Conductor conductor;
 	private Collection<Pasajero> pasajeros = new ArrayList<Pasajero>();
 	private Collection<Calificacion> calificaciones = new ArrayList<Calificacion>();
-	
+
 	@Override
 	public String toString() {
-		return "Viaje [finalizado=" + finalizado + ", origen=" + origen 
-				+ ", destino=" + destino + ", fecha=" + fecha 
-				+ ", costoTotal=" + costoTotal + ", cantMaximaPasajeros="
-				+ cantMaximaPasajeros + "]";
+		return "Viaje [finalizado=" + finalizado + ", origen=" + origen + ", destino=" + destino + ", fecha=" + fecha
+				+ ", costoTotal=" + costoTotal + ", cantMaximaPasajeros=" + cantMaximaPasajeros + "]";
 	}
 
 	/**
 	 * Constructor vacío.
-	*/
-	public Viaje(){}
+	 */
+	public Viaje() {
+	}
 
 	/**
 	 * Constructor.
 	 * 
 	 * @param conductor
-	 * 			conductor del viaje.
+	 *            conductor del viaje.
 	 * @param pasajeros
-	 * 			colección de pasajeros del viaje.
+	 *            colección de pasajeros del viaje.
 	 * @param origen
-	 * 			origen del viaje.
+	 *            origen del viaje.
 	 * @param destino
-	 * 			destino del viaje.
+	 *            destino del viaje.
 	 * @param fecha
-	 * 			fecha del viaje.
+	 *            fecha del viaje.
 	 */
 	public Viaje(Conductor conductor, Collection<Pasajero> pasajeros, String origen, String destino, Date fecha) {
-	    this.setConductor(conductor);
-	    this.setPasajeros(pasajeros);
-	    this.setOrigen(origen);
-	    this.setDestino(destino);
-	    this.setFecha(fecha);
-	    Tarifador tarifador = new Tarifador();
-	    this.setCostoTotal(tarifador.calcularCosto(this));
-	    this.setFinalizado(false);
-  }
+		this.setConductor(conductor);
+		this.setPasajeros(pasajeros);
+		this.setOrigen(origen);
+		this.setDestino(destino);
+		this.setFecha(fecha);
+		Tarifador tarifador = new Tarifador();
+		this.setCostoTotal(tarifador.calcularCosto(this));
+		this.setFinalizado(false);
+	}
 
 	/**
 	 * Getter.
@@ -62,40 +61,39 @@ public class Viaje {
 	public Long getId() {
 		return id;
 	}
-	
+
 	/**
 	 * Setter.
 	 * 
 	 * @param id
-	 *			es el id del Viaje.
+	 *            es el id del Viaje.
 	 */
 	public void setId(Long id) {
-	this.id = id;
+		this.id = id;
 	}
-	
+
 	/**
 	 * Agrega un pasajero al viaje.
 	 * 
 	 * @param unPasajero
 	 */
 	public void agregarPasajero(Pasajero pasajero) {
-	    this.getPasajeros().add(pasajero);
-	    this.recalcularValor();
-	  }
+		this.getPasajeros().add(pasajero);
+		this.recalcularValor();
+	}
 
 	/**
 	 * Calcula el valor del viaje.
 	 * 
 	 */
 	private void recalcularValor() {
-	    Tarifador tarifador = new Tarifador();
-	    this.setCostoTotal(tarifador.calcularCosto(this));
-	
-	  }
+		Tarifador tarifador = new Tarifador();
+		this.setCostoTotal(tarifador.calcularCosto(this));
 
-	
-	public void finalizarViaje(){
-	    this.setFinalizado(true);
+	}
+
+	public void finalizarViaje() {
+		this.setFinalizado(true);
 	}
 
 	/**
@@ -104,17 +102,17 @@ public class Viaje {
 	 * @return los pasajeros del viaje.
 	 */
 	public Collection<Pasajero> getPasajeros() {
-		  return pasajeros;
-		}
-	
+		return pasajeros;
+	}
+
 	/**
 	 * Setter.
 	 * 
 	 * @param pasajeros
-	 *			es la colección de pasajeros del viaje.
+	 *            es la colección de pasajeros del viaje.
 	 */
 	public void setPasajeros(Collection<Pasajero> pasajeros) {
-	  this.pasajeros = pasajeros;
+		this.pasajeros = pasajeros;
 	}
 
 	/**
@@ -123,37 +121,37 @@ public class Viaje {
 	 * @return el origen del viaje.
 	 */
 	public String getOrigen() {
-	    return origen;
-	  } 
+		return origen;
+	}
 
 	/**
 	 * Setter.
 	 * 
 	 * @param origen
-	 *			el origen del viaje.
+	 *            el origen del viaje.
 	 */
 	public void setOrigen(String origen) {
-	    this.origen = origen;
-	  }
-	
+		this.origen = origen;
+	}
+
 	/**
 	 * Getter.
 	 * 
 	 * @return el destino del viaje.
 	 */
 	public String getDestino() {
-	    return destino;
-	  } 
+		return destino;
+	}
 
 	/**
 	 * Setter.
 	 * 
 	 * @param destino
-	 *			el destino del viaje.
+	 *            el destino del viaje.
 	 */
 	public void setDestino(String destino) {
-	    this.destino = destino;
-	  }
+		this.destino = destino;
+	}
 
 	/**
 	 * Getter.
@@ -161,18 +159,18 @@ public class Viaje {
 	 * @return la fecha del viaje.
 	 */
 	public Date getFecha() {
-	    return fecha;
-	  }
+		return fecha;
+	}
 
 	/**
 	 * Setter.
 	 * 
 	 * @param fecha
-	 *			fecha del viaje.
+	 *            fecha del viaje.
 	 */
 	public void setFecha(Date fecha) {
-	    this.fecha = fecha;
-	  }
+		this.fecha = fecha;
+	}
 
 	/**
 	 * Getter.
@@ -180,18 +178,18 @@ public class Viaje {
 	 * @return el costo total cobrado para el viaje.
 	 */
 	public float getCostoTotal() {
-	    return costoTotal;
-	  }
-	
+		return costoTotal;
+	}
+
 	/**
 	 * Setter.
 	 * 
 	 * @param costoTotal
-	 *			los empleados que trabajan en la mudanza.
+	 *            los empleados que trabajan en la mudanza.
 	 */
 	public void setCostoTotal(float costoTotal) {
-	    this.costoTotal = costoTotal;
-	  }
+		this.costoTotal = costoTotal;
+	}
 
 	public boolean getFinalizado() {
 		return finalizado;
@@ -209,7 +207,8 @@ public class Viaje {
 	}
 
 	/**
-	 * @param cantMaximaPasajeros the cantMaximaPasajeros to set
+	 * @param cantMaximaPasajeros
+	 *            the cantMaximaPasajeros to set
 	 */
 	public void setCantMaximaPasajeros(int cantMaximaPasajeros) {
 		this.cantMaximaPasajeros = cantMaximaPasajeros;
@@ -223,7 +222,8 @@ public class Viaje {
 	}
 
 	/**
-	 * @param conductor the conductor to set
+	 * @param conductor
+	 *            the conductor to set
 	 */
 	public void setConductor(Conductor conductor) {
 		this.conductor = conductor;
@@ -236,5 +236,5 @@ public class Viaje {
 	public void setCalificaciones(Collection<Calificacion> calificaciones) {
 		this.calificaciones = calificaciones;
 	}
-	
+
 }
