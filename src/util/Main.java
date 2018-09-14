@@ -1,15 +1,22 @@
 package util;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import modelo.Pasajero;
+import modelo.*;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 
 public class Main {
-  public static void main(String[] args) {
+  public static void main(String[] args) throws HibernateException, ParseException {
       SessionFactory sessionFactory = new Configuration().configure()
                                                          .buildSessionFactory();
       try {
@@ -30,7 +37,8 @@ public class Main {
       session.close();
   }
 
-  private static void persist(SessionFactory sessionFactory) {
+  private static void persist(SessionFactory sessionFactory) throws HibernateException, ParseException {
+	  /*
 	  Pasajero p1 = new Pasajero();
 	  p1.setUsername("pasajero1");
 	  Pasajero p2 = new Pasajero();
@@ -44,14 +52,14 @@ public class Main {
       session.save(p1);
       session.save(p2);
       session.getTransaction().commit();
-	  
-	/*
+	  */
+	
 	Muber muber = cargarBase();
 	Session session = sessionFactory.openSession();
       	session.beginTransaction();
       	session.save(muber);
       	session.getTransaction().commit();
-	*/
+	
   }
 	
 private static Muber cargarBase() throws HibernateException, ParseException {
@@ -169,52 +177,52 @@ private static Muber cargarBase() throws HibernateException, ParseException {
 	conductor1.setUsername("conductor1");
 	conductor1.setPassword("admin");
 	conductor1.setFechaIngreso(d1);
-	conductor1.setFechaVencimientoLicencia(today.plusYears(1));
+	conductor1.setFechaVencimientoLicencia(java.sql.Date.valueOf(today.plusYears(1)));
 	Conductor conductor2 = new Conductor();
 	conductor2.setUsername("conductor2");
 	conductor2.setPassword("admin");
 	conductor2.setFechaIngreso(d2);
-	conductor2.setFechaVencimientoLicencia(today.plusYears(2));
+	conductor2.setFechaVencimientoLicencia(java.sql.Date.valueOf(today.plusYears(2)));
 	Conductor conductor3 = new Conductor();
 	conductor3.setUsername("conductor3");
 	conductor3.setPassword("admin");
 	conductor3.setFechaIngreso(d3);
-	conductor3.setFechaVencimientoLicencia(today.plusYears(2));
+	conductor3.setFechaVencimientoLicencia(java.sql.Date.valueOf(today.plusYears(2)));
 	Conductor conductor4 = new Conductor();
 	conductor4.setUsername("conductor4");
 	conductor4.setPassword("admin");
 	conductor4.setFechaIngreso(d4);
-	conductor4.setFechaVencimientoLicencia(today.plusYears(3));
+	conductor4.setFechaVencimientoLicencia(java.sql.Date.valueOf(today.plusYears(3)));
 	Conductor conductor5 = new Conductor();
 	conductor5.setUsername("conductor5");
 	conductor5.setPassword("admin");
 	conductor5.setFechaIngreso(d5);
-	conductor5.setFechaVencimientoLicencia(today.plusYears(3));
+	conductor5.setFechaVencimientoLicencia(java.sql.Date.valueOf(today.plusYears(3)));
 	Conductor conductor6 = new Conductor();
 	conductor6.setUsername("conductor6");
 	conductor6.setPassword("admin");
 	conductor6.setFechaIngreso(d6);
-	conductor6.setFechaVencimientoLicencia(today.plusYears(4));
+	conductor6.setFechaVencimientoLicencia(java.sql.Date.valueOf(today.plusYears(4)));
 	Conductor conductor7 = new Conductor();
 	conductor7.setUsername("conductor7");
 	conductor7.setPassword("admin");
 	conductor7.setFechaIngreso(d7);
-	conductor7.setFechaVencimientoLicencia(today.plusYears(2));
+	conductor7.setFechaVencimientoLicencia(java.sql.Date.valueOf(today.plusYears(2)));
 	Conductor conductor8 = new Conductor();
 	conductor8.setUsername("conductor8");
 	conductor8.setPassword("admin");
 	conductor8.setFechaIngreso(d8);
-	conductor8.setFechaVencimientoLicencia(today.plusYears(1));
+	conductor8.setFechaVencimientoLicencia(java.sql.Date.valueOf(today.plusYears(1)));
 	Conductor conductor9 = new Conductor();
 	conductor9.setUsername("conductor9");
 	conductor9.setPassword("admin");
 	conductor9.setFechaIngreso(d9);
-	conductor9.setFechaVencimientoLicencia(today.plusYears(1));
+	conductor9.setFechaVencimientoLicencia(java.sql.Date.valueOf(today.plusYears(1)));
 	Conductor conductor10 = new Conductor();
 	conductor10.setUsername("conductor10");
 	conductor10.setPassword("admin");
 	conductor10.setFechaIngreso(d10);
-	conductor10.setFechaVencimientoLicencia(today.plusYears(1));
+	conductor10.setFechaVencimientoLicencia(java.sql.Date.valueOf(today.plusYears(1)));
 
 	/* Muber */
 	HashSet<Pasajero> pasajeros = new HashSet<Pasajero>();
@@ -252,28 +260,28 @@ private static Muber cargarBase() throws HibernateException, ParseException {
 	conductores.add(conductor10);
 
 	/* Viajes */
-	Viaje v1 = new Viaje(conductor1, pasajeros, "origen", "destino", today.minusDays(5));
-	Viaje v2 = new Viaje(conductor1, pasajeros, "origen", "destino", today.minusDays(5));
-	Viaje v3 = new Viaje(conductor2, pasajeros, "origen", "destino", today.minusDays(5));
-	Viaje v4 = new Viaje(conductor2, pasajeros, "origen", "destino", today.minusDays(5));
-	Viaje v5 = new Viaje(conductor2, pasajeros, "origen", "destino", today.minusDays(5));
-	Viaje v6 = new Viaje(conductor3, pasajeros, "origen", "destino", today.minusDays(5));
-	Viaje v7 = new Viaje(conductor3, pasajeros, "origen", "destino", today.minusDays(5));
-	Viaje v8 = new Viaje(conductor4, pasajeros, "origen", "destino", today.minusDays(5));
-	Viaje v9 = new Viaje(conductor4, pasajeros, "origen", "destino", today.minusDays(5));
-	Viaje v10 = new Viaje(conductor5, pasajeros, "origen", "destino", today.minusDays(5));
+	Viaje v1 = new Viaje(conductor1, pasajeros, "origen", "destino", java.sql.Date.valueOf(today.minusDays(5)));
+	Viaje v2 = new Viaje(conductor1, pasajeros, "origen", "destino", java.sql.Date.valueOf(today.minusDays(5)));
+	Viaje v3 = new Viaje(conductor2, pasajeros, "origen", "destino", java.sql.Date.valueOf(today.minusDays(5)));
+	Viaje v4 = new Viaje(conductor2, pasajeros, "origen", "destino", java.sql.Date.valueOf(today.minusDays(5)));
+	Viaje v5 = new Viaje(conductor2, pasajeros, "origen", "destino", java.sql.Date.valueOf(today.minusDays(5)));
+	Viaje v6 = new Viaje(conductor3, pasajeros, "origen", "destino", java.sql.Date.valueOf(today.minusDays(5)));
+	Viaje v7 = new Viaje(conductor3, pasajeros, "origen", "destino", java.sql.Date.valueOf(today.minusDays(5)));
+	Viaje v8 = new Viaje(conductor4, pasajeros, "origen", "destino", java.sql.Date.valueOf(today.minusDays(5)));
+	Viaje v9 = new Viaje(conductor4, pasajeros, "origen", "destino", java.sql.Date.valueOf(today.minusDays(5)));
+	Viaje v10 = new Viaje(conductor5, pasajeros, "origen", "destino", java.sql.Date.valueOf(today.minusDays(5)));
 
 	HashSet<Viaje> viajes = new HashSet<Viaje>();
-	empleados.add(v1);
-	empleados.add(v2);
-	empleados.add(v3);
-	empleados.add(v4);
-	empleados.add(v5);
-	empleados.add(v6);
-	empleados.add(v7);
-	empleados.add(v8);
-	empleados.add(v9);
-	empleados.add(v10);
+	viajes.add(v1);
+	viajes.add(v2);
+	viajes.add(v3);
+	viajes.add(v4);
+	viajes.add(v5);
+	viajes.add(v6);
+	viajes.add(v7);
+	viajes.add(v8);
+	viajes.add(v9);
+	viajes.add(v10);
 	Muber muber = new Muber(pasajeros,conductores,viajes);
 	
 	return muber;
